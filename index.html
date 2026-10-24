@@ -1,34 +1,887 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profil Mahasiswa</title>
-  <style>
-    body {font-family: Arial, sans-serif; background:#eef2f7; margin:0; color:#1e293b}
-    header {background:#164e63; color:white; text-align:center; padding:28px}
-    main {max-width:760px; margin:24px auto; background:white; padding:24px; border-radius:12px}
-    h2 {color:#0e7490}
-    footer {text-align:center; padding:16px}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rahmadani A.R. | Personal Website</title>
+
+    <style>
+        :root {
+            --pink: #e84393;
+            --pink-dark: #b83280;
+            --pink-light: #fff0f6;
+            --purple: #805ad5;
+            --text: #342638;
+            --muted: #766779;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: var(--text);
+            background: #fffafd;
+            line-height: 1.7;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 17px 7%;
+            background: rgba(255, 255, 255, 0.96);
+            box-shadow: 0 3px 20px #d96a9b18;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            gap: 20px;
+        }
+
+        .logo {
+            color: var(--pink-dark);
+            font-size: 22px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .logo span {
+            color: var(--purple);
+        }
+
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 19px;
+        }
+
+        .menu a {
+            color: var(--text);
+            font-size: 13px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .menu a:hover {
+            color: var(--pink);
+        }
+
+        .hero {
+            min-height: 560px;
+            padding: 80px 8%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 45px;
+            background:
+                radial-gradient(circle at 85% 20%, #f9c5df 0, transparent 28%),
+                linear-gradient(135deg, #fff0f6, #f6edff);
+        }
+
+        .hero-text {
+            max-width: 590px;
+        }
+
+        .label {
+            display: inline-block;
+            background: white;
+            color: var(--pink-dark);
+            padding: 8px 17px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 700;
+            box-shadow: 0 5px 20px #d96a9b15;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(35px, 5vw, 57px);
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 span {
+            color: var(--pink);
+        }
+
+        .hero p {
+            color: var(--muted);
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 13px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 22px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            color: white;
+            background: linear-gradient(135deg, var(--pink), var(--pink-dark));
+            box-shadow: 0 7px 18px #e8439340;
+        }
+
+        .btn-secondary {
+            color: var(--pink-dark);
+            background: white;
+            border: 1px solid #f2c6dc;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+        }
+
+        .photo-box {
+            width: 290px;
+            height: 330px;
+            flex-shrink: 0;
+            background: white;
+            border: 10px solid white;
+            border-radius: 150px 150px 35px 35px;
+            box-shadow: 0 15px 40px #b8328020;
+            overflow: hidden;
+            transform: rotate(2deg);
+        }
+
+        .photo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(145deg, #f9d5e7, #e9d9ff);
+            color: var(--pink-dark);
+            text-align: center;
+            padding: 15px;
+        }
+
+        .photo-placeholder .symbol {
+            font-size: 65px;
+        }
+
+        .photo-placeholder p {
+            font-size: 13px;
+            margin-top: 10px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 75px 25px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 38px;
+        }
+
+        .section-title .small-title {
+            color: var(--pink);
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            margin: 8px 0;
+        }
+
+        .section-title p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #f4e1ec;
+            border-radius: 20px;
+            padding: 27px;
+            box-shadow: 0 8px 28px #9e467210;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 35px #9e46721b;
+        }
+
+        .card h3 {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: var(--pink-dark);
+        }
+
+        .card p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .profile-list {
+            list-style: none;
+        }
+
+        .profile-list li {
+            padding: 9px 0;
+            border-bottom: 1px solid #f7e8f0;
+            font-size: 14px;
+        }
+
+        .profile-list li:last-child {
+            border-bottom: none;
+        }
+
+        .profile-list strong {
+            display: inline-block;
+            min-width: 110px;
+            color: var(--pink-dark);
+        }
+
+        .education {
+            background: var(--pink-light);
+        }
+
+        .timeline {
+            max-width: 750px;
+            margin: auto;
+            border-left: 3px solid #f2a6ca;
+            padding-left: 27px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 22px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -36px;
+            top: 20px;
+            width: 15px;
+            height: 15px;
+            background: var(--pink);
+            border: 4px solid white;
+            border-radius: 50%;
+            box-shadow: 0 0 0 2px #f2a6ca;
+        }
+
+        .year {
+            display: inline-block;
+            color: var(--pink-dark);
+            background: #ffe0ee;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .education .card {
+            padding: 22px;
+        }
+
+        .education .card h3 {
+            color: var(--text);
+            margin-bottom: 4px;
+        }
+
+        .education .card p {
+            font-size: 13px;
+        }
+
+        .academic-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .academic-card {
+            text-align: center;
+            padding: 25px 15px;
+            background: white;
+            border: 1px solid #f4e1ec;
+            border-radius: 18px;
+            box-shadow: 0 8px 25px #9e46720d;
+        }
+
+        .academic-card .icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .academic-card h3 {
+            color: var(--pink-dark);
+            font-size: 14px;
+            margin-bottom: 7px;
+        }
+
+        .academic-card p {
+            color: var(--muted);
+            font-size: 13px;
+            overflow-wrap: anywhere;
+        }
+
+        .skills {
+            background: linear-gradient(135deg, #fff0f6, #f6edff);
+        }
+
+        .skills-wrap {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 13px;
+        }
+
+        .skill {
+            padding: 12px 20px;
+            border: 1px solid #f0c5dc;
+            border-radius: 30px;
+            background: white;
+            color: var(--pink-dark);
+            font-size: 14px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .skill:hover {
+            background: var(--pink);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .hobby-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .hobby-card {
+            text-align: center;
+            padding: 35px 22px;
+            background: white;
+            border-radius: 22px;
+            border: 1px solid #f4e1ec;
+            box-shadow: 0 8px 28px #9e467210;
+            transition: 0.3s;
+        }
+
+        .hobby-card:hover {
+            transform: translateY(-7px);
+            border-color: #efa6cb;
+        }
+
+        .hobby-icon {
+            width: 75px;
+            height: 75px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 18px;
+            border-radius: 23px;
+            background: linear-gradient(135deg, #ffe0ee, #eee3ff);
+            font-size: 34px;
+        }
+
+        .hobby-card h3 {
+            color: var(--pink-dark);
+            margin-bottom: 10px;
+        }
+
+        .goal {
+            background: linear-gradient(135deg, #c13584, #805ad5);
+            color: white;
+            text-align: center;
+            border-radius: 25px;
+            padding: 45px 30px;
+            box-shadow: 0 12px 30px #805ad52b;
+        }
+
+        .goal h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .goal p {
+            max-width: 720px;
+            margin: auto;
+            font-size: 15px;
+            color: #fff0f8;
+        }
+
+        .contact {
+            background: #fff5fa;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .contact-card {
+            text-align: center;
+            padding: 27px 18px;
+            background: white;
+            border: 1px solid #f4dce9;
+            border-radius: 20px;
+            box-shadow: 0 7px 25px #9e46720c;
+        }
+
+        .contact-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .contact-card h3 {
+            color: var(--pink-dark);
+            margin-bottom: 8px;
+        }
+
+        .contact-card p,
+        .contact-card a {
+            color: var(--muted);
+            font-size: 13px;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-card a {
+            color: var(--pink-dark);
+            font-weight: 700;
+        }
+
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background: #382238;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        footer strong {
+            color: #ffadd2;
+        }
+
+        footer p {
+            font-size: 13px;
+            margin: 5px 0;
+            color: #ead9e7;
+        }
+
+        .back-top {
+            display: inline-block;
+            margin-top: 13px;
+            color: #ffadd2;
+            font-size: 13px;
+        }
+
+        @media (max-width: 850px) {
+            .navbar {
+                flex-direction: column;
+                padding: 15px 4%;
+            }
+
+            .menu {
+                justify-content: center;
+                gap: 12px;
+            }
+
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding: 55px 7%;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .photo-box {
+                width: 230px;
+                height: 260px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .academic-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hobby-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu {
+                gap: 8px 13px;
+            }
+
+            .menu a {
+                font-size: 12px;
+            }
+
+            .container {
+                padding: 55px 18px;
+            }
+
+            .section-title h2 {
+                font-size: 26px;
+            }
+
+            .academic-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-list strong {
+                min-width: 95px;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <header>
-    <h1>Website Profil Mahasiswa</h1>
-    <p>Praktik Administrasi Website</p>
-  </header>
-  <main>
-    <h2>Profil Singkat</h2>
-    <p>Halo, saya [Nama Mahasiswa]. Saya sedang belajar memublikasikan website.</p>
-    <h2>Informasi</h2>
-    <ul>
-      <li>Program Studi: Informatika</li>
-      <li>Mata Kuliah: Administrasi Website</li>
-      <li>Topik: Hosting dan publikasi website</li>
-    </ul>
-    <h2>Tujuan</h2>
-    <p>Halaman ini dibuat sebagai latihan mengunggah HTML ke layanan hosting.</p>
-  </main>
-  <footer>Website latihan mahasiswa — 2026</footer>
+
+    <!-- NAVIGASI -->
+    <nav class="navbar">
+        <a href="#beranda" class="logo">Rahmadani<span>.</span></a>
+
+        <div class="menu">
+            <a href="#beranda">Beranda</a>
+            <a href="#profil">Profil</a>
+            <a href="#pendidikan">Pendidikan</a>
+            <a href="#akademik">Akademik</a>
+            <a href="#keahlian">Keahlian</a>
+            <a href="#hobi">Hobi</a>
+            <a href="#kontak">Kontak</a>
+        </div>
+    </nav>
+
+    <!-- BERANDA -->
+    <section class="hero" id="beranda">
+        <div class="hero-text">
+            <span class="label">✦ PERSONAL WEBSITE ✦</span>
+
+            <h1>Halo, Saya <span>Rahmadani A.R.</span></h1>
+
+            <p>
+                Selamat datang di website pribadi saya!
+                Saya mahasiswa Informatika yang sedang belajar,
+                berkembang, dan mengenal lebih jauh dunia teknologi.
+            </p>
+
+            <div class="buttons">
+                <a href="#profil" class="btn btn-primary">
+                    Kenali Saya →
+                </a>
+
+                <a href="#kontak" class="btn btn-secondary">
+                    Hubungi Saya
+                </a>
+            </div>
+        </div>
+
+        <div class="photo-box">
+            <img src="foto.jpeg"
+                 alt="Foto Rahmadani A.R."
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+
+            <div class="photo-placeholder" style="display:none;">
+                <div class="symbol">🌸</div>
+                <strong>Rahmadani A.R.</strong>
+                <p>Letakkan foto.jpeg di folder website</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROFIL -->
+    <section class="container" id="profil">
+        <div class="section-title">
+            <span class="small-title">Tentang Saya</span>
+            <h2>Mari Berkenalan</h2>
+            <p>Sedikit cerita tentang diri dan perjalanan saya.</p>
+        </div>
+
+        <div class="about-grid">
+            <div class="card">
+                <h3>🌷 Siapa Saya?</h3>
+                <p>
+                    Halo! Perkenalkan, nama saya Rahmadani A.R.
+                    Saya merupakan mahasiswa Program Studi Informatika
+                    di Universitas Cokroaminoto Palopo.
+                </p>
+                <br>
+                <p>
+                    Saya tertarik mempelajari komputer, teknologi informasi,
+                    dan pembuatan website. Saya ingin terus belajar,
+                    menambah pengalaman, dan mengembangkan kemampuan
+                    agar dapat meraih cita-cita di masa depan.
+                </p>
+            </div>
+
+            <div class="card">
+                <h3>💗 Informasi Pribadi</h3>
+                <ul class="profile-list">
+                    <li><strong>Nama</strong> Rahmadani A.R.</li>
+                    <li><strong>NIM</strong> 2404411043</li>
+                    <li><strong>Program Studi</strong> Informatika</li>
+                    <li><strong>Kampus</strong> Universitas Cokroaminoto Palopo</li>
+                    <li><strong>Domisili</strong> Palopo, Sulawesi Selatan</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- PENDIDIKAN -->
+    <section class="education" id="pendidikan">
+        <div class="container">
+            <div class="section-title">
+                <span class="small-title">Perjalanan Belajar</span>
+                <h2>Riwayat Pendidikan</h2>
+                <p>Perjalanan pendidikan saya dari sekolah hingga perguruan tinggi.</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="card">
+                        <span class="year">2012–2018 · Perkiraan</span>
+                        <h3>SD Islam Datuk Sulaiman</h3>
+                        <p>Sekolah Dasar</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="card">
+                        <span class="year">2018–2021 · Perkiraan</span>
+                        <h3>SMPN 4 Palopo</h3>
+                        <p>Sekolah Menengah Pertama</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="card">
+                        <span class="year">2021–2024</span>
+                        <h3>SMKN 4 Palopo</h3>
+                        <p>Sekolah Menengah Kejuruan · Lulus 2024</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="card">
+                        <span class="year">Saat ini</span>
+                        <h3>Universitas Cokroaminoto Palopo</h3>
+                        <p>Program Studi Informatika · Mahasiswa</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AKADEMIK -->
+    <section class="container" id="akademik">
+        <div class="section-title">
+            <span class="small-title">Data Perkuliahan</span>
+            <h2>Informasi Akademik</h2>
+            <p>Informasi pendidikan saya saat ini.</p>
+        </div>
+
+        <div class="academic-grid">
+            <div class="academic-card">
+                <div class="icon">👩🏻‍🎓</div>
+                <h3>Nama Mahasiswa</h3>
+                <p>Rahmadani A.R.</p>
+            </div>
+
+            <div class="academic-card">
+                <div class="icon">🪪</div>
+                <h3>Nomor Induk</h3>
+                <p>2404411043</p>
+            </div>
+
+            <div class="academic-card">
+                <div class="icon">💻</div>
+                <h3>Program Studi</h3>
+                <p>Informatika</p>
+            </div>
+
+            <div class="academic-card">
+                <div class="icon">🏫</div>
+                <h3>Perguruan Tinggi</h3>
+                <p>Universitas Cokroaminoto Palopo</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- KEAHLIAN -->
+    <section class="skills" id="keahlian">
+        <div class="container">
+            <div class="section-title">
+                <span class="small-title">Pengembangan Diri</span>
+                <h2>Keahlian & Minat</h2>
+                <p>Bidang yang sedang saya pelajari dan kembangkan.</p>
+            </div>
+
+            <div class="skills-wrap">
+                <span class="skill">HTML</span>
+                <span class="skill">CSS</span>
+                <span class="skill">Pembuatan Website</span>
+                <span class="skill">Microsoft Office</span>
+                <span class="skill">Teknologi Informasi</span>
+                <span class="skill">Desain Website</span>
+                <span class="skill">Penggunaan Komputer</span>
+                <span class="skill">Belajar Mandiri</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOBI -->
+    <section class="container" id="hobi">
+        <div class="section-title">
+            <span class="small-title">Aktivitas Favorit</span>
+            <h2>Hobi Saya</h2>
+            <p>Hal-hal yang saya sukai untuk mengisi waktu luang.</p>
+        </div>
+
+        <div class="hobby-grid">
+            <div class="hobby-card">
+                <div class="hobby-icon">🎬</div>
+                <h3>Menonton</h3>
+                <p>
+                    Saya suka menonton untuk menghibur diri,
+                    menikmati cerita, dan mengisi waktu luang.
+                </p>
+            </div>
+
+            <div class="hobby-card">
+                <div class="hobby-icon">📚</div>
+                <h3>Membaca</h3>
+                <p>
+                    Membaca menjadi salah satu cara saya menambah
+                    wawasan dan memperoleh informasi baru.
+                </p>
+            </div>
+
+            <div class="hobby-card">
+                <div class="hobby-icon">🏃🏻‍♀️</div>
+                <h3>Olahraga</h3>
+                <p>
+                    Saya menyukai olahraga untuk menjaga kesehatan,
+                    kebugaran tubuh, dan semangat beraktivitas.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TUJUAN -->
+    <section class="container" id="tujuan">
+        <div class="goal">
+            <h2>✨ Tujuan dan Harapan Saya</h2>
+            <p>
+                Saya membuat website ini untuk memperkenalkan diri
+                sekaligus menerapkan ilmu HTML dan CSS yang saya pelajari.
+                Saya berharap dapat terus meningkatkan keterampilan,
+                memperluas pengetahuan di bidang teknologi, dan menjadi
+                pribadi yang lebih baik serta bermanfaat bagi orang lain.
+            </p>
+        </div>
+    </section>
+
+    <!-- KONTAK -->
+    <section class="contact" id="kontak">
+        <div class="container">
+            <div class="section-title">
+                <span class="small-title">Mari Terhubung</span>
+                <h2>Hubungi Saya</h2>
+                <p>Silakan hubungi saya melalui informasi berikut.</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">✉️</div>
+                    <h3>Email</h3>
+                    <p>
+                        <a href="mailto:dahliarahmadani507@gmail.com">
+                            dahliarahmadani507@gmail.com
+                        </a>
+                    </p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">💬</div>
+                    <h3>WhatsApp</h3>
+                    <p>
+                        <a href="https://wa.me/6285230219059"
+                           target="_blank" rel="noopener noreferrer">
+                            085230219059
+                        </a>
+                    </p>
+                    <p> Klik nomor untuk mengirim pesan.</p>
+                </div>
+
+                <div class="contact-card">
+                    <div class="contact-icon">📍</div>
+                    <h3>Lokasi</h3>
+                    <p>Palopo, Sulawesi Selatan</p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Palopo"
+                       target="_blank" rel="noopener noreferrer">
+                        Buka Google Maps →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Dibuat dengan 💗 oleh <strong>Rahmadani A.R.</strong></p>
+        <p>Mahasiswa Informatika · Universitas Cokroaminoto Palopo</p>
+        <p>&copy; 2026 Personal Website. Semua hak dilindungi.</p>
+        <a class="back-top" href="#beranda">↑ Kembali ke atas</a>
+    </footer>
+
 </body>
 </html>
